@@ -2,7 +2,6 @@
 # Instagram: cyber_77k
 
 from sami_ai import Worm_GPT
-import time
 import platform
 import os
 
@@ -15,21 +14,17 @@ except ImportError:
 # Coded By Mr.SaMI
 red = "\033[1;31m"
 green = "\033[1;32m"
-cyan = "\033[1;36m"
-
 
 def banner():
     sami = pyfiglet.Figlet(font="slant")
     banner_text = sami.renderText("WormGPT")
     print(green + banner_text)
 
-
 def clear():
     if platform.system() == "Windows":
         os.system("cls")
     else:
         os.system("clear")
-
 
 def main(key, model):
     banner()
@@ -43,9 +38,11 @@ def main(key, model):
         elif user_input.lower() == 'clear':
             clear()
         else:
-            result = Worm_GPT(user_input, key, model)
-            print(f"{red}WormGPT : {green}{result['response']}\n")
-
+            try:
+                result = Worm_GPT(user_input, key, model)
+                print(f"{red}WormGPT: {green}{result['response']}\n")
+            except Exception as e:
+                print(f"{red}Error: {e}{green}\n")
 
 if __name__ == "__main__":
     banner()
